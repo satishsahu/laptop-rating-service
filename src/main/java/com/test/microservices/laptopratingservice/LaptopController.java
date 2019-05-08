@@ -3,6 +3,7 @@ package com.test.microservices.laptopratingservice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.test.microservices.laptopratingservice.model.Laptop;
 import com.test.microservices.laptopratingservice.service.LaptopService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LaptopController {
 
 	@Autowired

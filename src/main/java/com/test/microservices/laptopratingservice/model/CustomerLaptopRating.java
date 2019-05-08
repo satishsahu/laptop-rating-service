@@ -36,7 +36,7 @@ public class CustomerLaptopRating implements Serializable{
 	//@NotNull
 	private Laptop laptop;
 	
-	private int rating;
+	private int rating=0;
 
 	public CustomerLaptopRating() {
 	}

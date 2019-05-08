@@ -37,6 +37,14 @@ public class CustomerLaptopRatingKey implements Serializable{
 	public CustomerLaptopRatingKey() {
 	}
 	
+	public CustomerLaptopRatingKey(Customer customer, Laptop laptop) {
+		super();
+		this.customer = customer;
+		this.laptop = laptop;
+	}
+
+
+
 	public Customer getCustomer() {
 		return customer;
 	}

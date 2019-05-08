@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.test.microservices.laptopratingservice.model.AverageLaptopRating;
 import com.test.microservices.laptopratingservice.model.Customer;
 import com.test.microservices.laptopratingservice.model.Laptop;
+import com.test.microservices.laptopratingservice.repository.CustomerLaptopRatingRepository;
 import com.test.microservices.laptopratingservice.repository.LaptopRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class LaptopService {
 
 	@Autowired
 	LaptopRepository laptopRepository;
+	
+	@Autowired
+	CustomerLaptopRatingRepository customerLaptopRatinglaptopRepository;
 	
 	public List<Laptop> saveAllLaptops(List<Laptop> laptops){
 		return laptopRepository.saveAll(laptops);
@@ -34,6 +38,11 @@ public class LaptopService {
 	}
 	
 	public AverageLaptopRating getAverageRatingPerLaptop(long id){
-		return new AverageLaptopRating(id, laptopRepository.getAverageRatingPerLaptop(id));
+		if(customerLaptopRatinglaptopRepository.getLaptopRatingPerLaptop(id) != null && !customerLaptopRatinglaptopRepository.getLaptopRatingPerLaptop(id).isEmpty()){
+			return new AverageLaptopRating(id, laptopRepository.getAverageRatingPerLaptop(id));
+		}else{
+			return new AverageLaptopRating(id, 0);
+		}
+		
 	}
 }

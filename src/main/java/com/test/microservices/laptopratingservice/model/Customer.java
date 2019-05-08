@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Customer {
 
@@ -21,6 +24,7 @@ public class Customer {
 	private String name;
 	private String email; 
 	private String phone;
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<CustomerLaptopRating> customerLaptopRatings;
 	
@@ -75,6 +79,12 @@ public class Customer {
 
 	public void setCustomerLaptopRatings(Set<CustomerLaptopRating> customerLaptopRatings) {
 		this.customerLaptopRatings = customerLaptopRatings;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", customerLaptopRatings=" + customerLaptopRatings + "]";
 	}
 	
 }
